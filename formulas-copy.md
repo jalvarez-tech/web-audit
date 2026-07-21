@@ -15,6 +15,8 @@ Material para el bloque 8 del informe. La regla que gobierna todo este archivo: 
 
 ## Titulares
 
+**Usa las palabras reales del cliente cuando las tengas.** Si el Paso 0 o el subpaso 1k (voz del cliente) aportaron objeciones o vocabulario textual, constrúyelos dentro del titular y cítalos como fuente en el informe. Si no los tienes, puedes proponer igual, pero marca el titular como **"hipótesis a validar con clientes reales"** en vez de presentarlo como certeza: los corchetes `[Problema en las palabras del cliente]` se llenan con lenguaje del segmento, no con tu suposición.
+
 ### Fórmulas
 
 **1. Transformación**
