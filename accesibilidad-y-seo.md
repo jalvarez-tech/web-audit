@@ -46,16 +46,23 @@ Si el usuario quiere posicionamiento, no le entregues esta parte como sustituto:
 
 ### Qué se verifica en ruta C
 
-Más de lo que parece. Estos elementos aparecen en el contenido extraído de cualquier página:
+Más de lo que parece, pero **depende de la subruta** — aplica la prueba de alcance del extractor del Paso 1b (SKILL.md).
 
-- **Texto alternativo** de cada imagen, y su calidad.
+Observable en toda ruta C, incluida C2 (contenido visible):
+
 - **Enlace de salto al contenido** al inicio del documento.
 - **Estructura de encabezados**: cuántos `h1` hay, si el orden salta niveles, si los encabezados describen su sección.
 - **Texto de enlaces y botones**: si dicen a dónde llevan.
 - **Etiquetas de formulario**: si cada campo tiene una.
-- **Idioma declarado** y coherencia de `hreflang`.
 - **Aviso de apertura en pestaña nueva**.
-- **Títulos de página** únicos y descriptivos.
+
+Requiere subruta C1 (`<head>` presente) o la sonda de imágenes:
+
+- **Texto alternativo** de cada imagen, y su calidad — depende de la **sonda de imágenes**.
+- **Títulos de página** únicos y descriptivos (`<title>`) — subruta C1.
+- **Idioma declarado** y coherencia de `hreflang` — subruta C1.
+
+En C2, estos tres van a **NE**, nunca a 0.
 
 ### Qué requiere capturas o navegador
 
@@ -67,7 +74,7 @@ Un análisis automatizado completo (axe, Lighthouse, WAVE), la prueba con lector
 
 ### Rúbrica
 
-#### A1 — Texto alternativo — 0 a 3
+#### A1 — Texto alternativo — 0 a 3 · *en ruta C, sujeto a la sonda de imágenes*
 
 | Nota | Ancla |
 |---:|---|
@@ -144,7 +151,7 @@ Distinto de A2: aquí no importa la jerarquía técnica sino si los encabezados 
 
 ### S3 — Metadatos sociales — 0 a 2
 
-Con lo verificado en el Paso 1e.
+Con lo verificado en el Paso 1e. El ancla 0 solo puede asignarse en rutas A, B o C1; en **C2 el criterio es NE, nunca 0** (no viste el `<head>`, no que falte).
 
 | Nota | Ancla |
 |---:|---|
@@ -153,6 +160,8 @@ Con lo verificado en el Paso 1e.
 | 2 | Completos y específicos por página, con imagen propia de esa página y no un genérico de marca. |
 
 ### S4 — URLs, `canonical` y `hreflang` — 0 a 1
+
+`canonical` y `hreflang` viven en el `<head>`: el ancla 0 solo puede asignarse en rutas A, B o C1; en **C2 es NE, nunca 0**. La duplicación de rutas y el prefijo de idioma perdido sí se ven en el contenido de cualquier ruta.
 
 | Nota | Ancla |
 |---:|---|

@@ -22,6 +22,10 @@ Puntúa cada subcriterio contra su ancla, no contra tu impresión general del si
 
 Para cada subcriterio, **escribe la evidencia antes que el número**. Si no puedes citar algo concreto del sitio que justifique la nota, la nota está mal.
 
+**Desempate en anclas 1–2:** varias anclas colapsan las notas 1 y 2 en una sola fila. Asigna **2** solo si tu línea de evidencia cita algo concreto del sitio que apunte parcialmente al ancla del nivel 3 de ese subcriterio; si la evidencia solo confirma el ancla 1–2, asigna **1**. Así el desempate queda sujeto al mismo mecanismo de evidencia escrita que el resto de la rúbrica.
+
+**Regla de viewport.** Todo subcriterio que dependa del fold o del peso visual (1.5, 5.1, 5.2) se evalúa por defecto sobre el **viewport móvil** cuando exista evidencia móvil —la captura de la parte superior en móvil del Paso 0, o navegador redimensionado a ~375 px—. La versión de escritorio es secundaria: si ambos folds divergen (CTA visible en escritorio pero no en móvil, propuesta de valor empujada bajo el fold móvil), la nota la fija la versión móvil y la divergencia se reporta como hallazgo con prioridad propia. Sin evidencia visual móvil, evalúa sobre la evidencia disponible (captura de escritorio u orden del contenido extraído) y decláralo en el campo "Evidencia visual" de la ficha técnica y en la nota de alcance. En 5.1, la regla aplica solo a su dimensión visual (dominancia del CTA en pantalla), no a la textual.
+
 Tres marcas posibles además del número:
 
 - **NE (no evaluado)** — falta evidencia. No cuenta ni en obtenidos ni en evaluables.
@@ -29,6 +33,8 @@ Tres marcas posibles además del número:
 - **0** — se pudo evaluar y está mal. Esto sí cuenta.
 
 Confundir NE con 0 es el error más común y el más caro: produce informes que castigan al cliente por límites de tu propia auditoría.
+
+**NE descuenta de la cobertura; NA descuenta de la base aplicable. No los mezcles al reportar** (ver la normalización del Paso 3 en SKILL.md): la cobertura mide lo que no pudiste ver, no lo que no aplica al modelo de negocio.
 
 ---
 
@@ -47,6 +53,8 @@ De cada diez sitios de PyME o profesional independiente auditados con esta rúbr
 | 0–39 | 2 |
 
 **El caso típico está entre 40 y 59.** Un sitio corporativo estándar —hecho por una agencia, visualmente correcto, con titular genérico, sin prueba social específica, con formulario de contacto de siete campos y sin oferta intermedia— es un 45–55. No un 70.
+
+Distribución calibrada sobre PyME y profesional independiente. Con un módulo de vertical activo, los tres controles anti-inflación de abajo siguen aplicando; justifica cada nota contra las anclas **ajustadas por el módulo**, no contra las de la rúbrica base.
 
 Antes de cerrar el score, aplica estos tres controles:
 
@@ -139,6 +147,8 @@ Usa el conteo de la prueba "nosotros vs. tú".
 | 0 | Ninguna objeción anticipada. Ni FAQ, ni sección de proceso, ni referencia a precio o plazos. |
 | 1 | Algunas objeciones atendidas, típicamente en un FAQ genérico. |
 | 2 | Las objeciones reales del segmento —precio, tiempo, riesgo, confianza— se abordan donde surgen en el recorrido. |
+
+Cuando el Paso 0 o el subpaso 1k (voz del cliente) aporten objeciones **declaradas u observadas**, evalúa contra ellas — es el caso ideal. Si no existe ninguna, evalúa contra las cuatro clases canónicas de arriba y **marca el análisis como inferido**: no las inventes como si fueran las del negocio.
 
 ### 2.5 Consistencia del mensaje y acabado público — 0 a 2
 
@@ -321,7 +331,7 @@ Página de confirmación con siguiente paso, email automático, onboarding, reco
 
 ## Categoría 7 — Experiencia móvil y usabilidad (8 puntos)
 
-**Solo evaluable con capturas o navegador.** Sin evidencia visual, marca los cuatro subcriterios como NE y normaliza.
+Evaluable con capturas del usuario o con navegador que permita **emulación móvil** (ver la ruta A del Paso 1b). Sin evidencia visual, marca **7.1–7.3** como NE y normaliza. **7.4 (velocidad) no depende de capturas:** se evalúa únicamente con el dato de PageSpeed, y sin ese dato es NE.
 
 ### 7.1 Diseño móvil — 0 a 3
 
@@ -353,14 +363,16 @@ Solo con dato de PageSpeed Insights. Sin dato, NE.
 
 | Nota | Ancla |
 |---:|---|
-| 0 | LCP superior a 4 s o INP superior a 500 ms. |
-| 1 | Dentro de umbrales aceptables. |
+| 0 | LCP superior a 4 s, INP superior a 500 ms **o** CLS superior a 0,25 (rango "deficiente" de PageSpeed). |
+| 1 | LCP ≤ 4 s, INP ≤ 500 ms **y** CLS ≤ 0,25. |
+
+El rango "a mejorar" de PageSpeed (p. ej. LCP entre 2,5 y 4 s) puntúa 1; solo el rango "deficiente" puntúa 0. Usa las tres métricas que el Paso 1f pide (LCP, INP, CLS); si no tienes alguna, evalúa con las que tengas y no penalices la ausente.
 
 ---
 
 ## Categoría 8 — Automatización y medición (8 puntos)
 
-Basado en lo verificado en el HTML (Paso 1b). Distingue instalado de bien configurado.
+Basado en la evidencia del Paso 1b. Distingue instalado de bien configurado, y evidencia **observada** (código o navegador — rutas A y B) de evidencia **solo declarada por el cliente**. Lo solo declarado puntúa con **tope 1** en cada subcriterio y se etiqueta "declarado por el cliente" en la columna de evidencia; la nota 2 exige evidencia observada, porque el cliente puede creer que tiene eventos de conversión configurados y tener solo la etiqueta base. Sin código, sin navegador y sin declaración, el subcriterio va a **NE**.
 
 ### 8.1 Captura y seguimiento — 0 a 2
 
@@ -385,6 +397,8 @@ Basado en lo verificado en el HTML (Paso 1b). Distingue instalado de bien config
 | 0 | Sin analítica instalada. **Este cero es el hallazgo número uno del informe.** |
 | 1 | Analítica instalada sin evidencia de eventos de conversión. |
 | 2 | Analítica más píxeles publicitarios, con eventos de conversión aparentes. |
+
+**Antes de asignar 0**, contrasta con lo que el usuario declaró en el Paso 0 y con las señales de plataforma del 1b (`google-site-verification`, `facebook-domain-verification`, CMP presente). Si hay señales de conexión sin script visible, o sospecha de medición server-side (un cargador `gtag(` sirviéndose desde subdominio propio en vez de `googletagmanager.com`, o ningún script pero verificaciones activas), trátalo como duda y **pregunta al usuario en lugar de asignar 0**. Recuerda que la lista de analítica del 1b incluye Matomo, Plausible, Fathom, Umami y PostHog: no verlas por buscar solo GA no es ausencia.
 
 ### 8.4 Optimización, pruebas o recuperación — 0 a 2
 

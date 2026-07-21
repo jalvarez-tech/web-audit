@@ -73,6 +73,8 @@ flowchart LR
 | Módulo | Archivo | Cuándo se activa |
 |---|---|---|
 | **E-commerce** | `vertical-ecommerce.md` | Tiendas con carrito y checkout. Recorrido de checkout (sin completar pagos), disponibilidad de variantes y tallas, comprobación cruzada de políticas de envío y devolución. Ajusta criterios existentes sin tocar los 100 puntos. |
+| **Servicios con reserva/agenda** | `vertical-reservas.md` | Negocios cuya acción principal es reservar o agendar (clínicas, restaurantes, asesorías, tours). Disponibilidad visible, flujo de reserva (sin confirmar), precio y política antes de reservar, recordatorio contra el no-show. |
+| **B2B de ticket alto** | `vertical-b2b-ticket-alto.md` | Venta consultiva de ciclo largo y decisión multi-rol (SaaS, consultoría, industrial). Corrige el sesgo B2C: el formulario largo como calificación, contenido para el comité y la página reenviable. |
 | **Contexto Colombia / LatAm** | `contexto-colombia.md` | Mercados donde WhatsApp es *el* canal de venta. Medios de pago locales (PSE, Nequi, contraentrega…), señales de confianza locales y tratamiento de datos personales (habeas data). |
 | **Accesibilidad y SEO comercial** | `accesibilidad-y-seo.md` | A pedido, sectores regulados o venta a EE. UU. / UE. Se puntúa sobre 20 aparte — nunca se mezcla con el score de conversión. Cubre solo la capa observable de SEO que toca la venta. |
 
@@ -103,6 +105,7 @@ mkdir -p ~/.claude/skills/web-audit/references
 cp SKILL.md ~/.claude/skills/web-audit/
 cp accesibilidad-y-seo.md contexto-colombia.md formulas-copy.md \
    plantilla-informe.md rubrica-scoring.md vertical-ecommerce.md \
+   vertical-reservas.md vertical-b2b-ticket-alto.md \
    ~/.claude/skills/web-audit/references/
 ```
 
@@ -145,6 +148,8 @@ Sin nada de eso el skill igual funciona: audita lo observable, marca el resto co
 | [formulas-copy.md](formulas-copy.md) | Fórmulas de titulares, banco de CTAs por tipo de negocio, formato de testimonios, bloques de reducción de riesgo y ofertas intermedias. |
 | [contexto-colombia.md](contexto-colombia.md) | Módulo Colombia / LatAm. |
 | [vertical-ecommerce.md](vertical-ecommerce.md) | Módulo vertical de tiendas online. |
+| [vertical-reservas.md](vertical-reservas.md) | Módulo vertical de servicios con reserva o agenda. |
+| [vertical-b2b-ticket-alto.md](vertical-b2b-ticket-alto.md) | Módulo vertical de venta consultiva B2B de ticket alto. |
 | [accesibilidad-y-seo.md](accesibilidad-y-seo.md) | Módulo complementario de accesibilidad (12 pts) y SEO comercial (8 pts), puntuado aparte. |
 | `web-audit.skill` | Paquete ZIP instalable con la estructura final (`web-audit/SKILL.md` + `web-audit/references/`). |
 
