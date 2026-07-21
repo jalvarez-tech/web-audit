@@ -34,8 +34,8 @@ flowchart LR
 
 | Paso | Qué hace |
 |---|---|
-| **0 — Encuadre** | Pide URL, cliente ideal, acción principal, mercado, competidores y evidencia (capturas, `view-source`, PageSpeed) en un solo mensaje. No se detiene si faltan respuestas: infiere, marca suposiciones y sigue. |
-| **1 — Evidencia** | Home + hasta 8 páginas priorizadas (conversión primero). Audita plantillas, no instancias. Detecta analítica, píxeles, CRM, pasarelas y metadatos; cruza consistencia entre plantillas; revisa cómo se ve el enlace al compartirlo (Open Graph); benchmark de 5 ejes contra competidores. |
+| **0 — Encuadre** | Pide URL, cliente ideal, acción principal, mercado, competidores, origen del tráfico y evidencia (capturas, `view-source`, PageSpeed, datos de analítica, objeciones reales de clientes) en un solo mensaje. No se detiene si faltan respuestas: infiere, marca suposiciones y sigue. |
+| **1 — Evidencia** | Home + hasta 8 páginas priorizadas (conversión primero). Audita plantillas, no instancias. Detecta analítica, píxeles, CRM, pasarelas y metadatos; verifica seguridad de transporte (HTTPS), enlaces rotos y página 404; cruza consistencia entre plantillas; revisa cómo se ve el enlace al compartirlo (Open Graph); benchmark de 5 ejes contra competidores. |
 | **2 — Análisis** | Nueve ejes: intención comercial, prueba de los 5 segundos, mensaje, estructura, credibilidad, CTAs, embudo, automatización y medición, experiencia móvil. |
 | **3 — Puntuación** | Rúbrica de 100 puntos con anclas. Score = obtenidos ÷ evaluables × 100, siempre acompañado del % de cobertura. |
 | **4 — Hallazgos** | Cada fuga con prioridad (Crítico / Alto / Medio / Bajo), impacto, esfuerzo, ubicación, evidencia y recomendación concreta. |
@@ -133,6 +133,8 @@ Para mejores resultados, ten a la mano:
 1. **Tres capturas** — parte superior de la home en escritorio y en móvil, y el formulario o checkout en móvil (habilitan la categoría 7).
 2. **El código** — `view-source` de la home, o el inventario de lo instalado (habilita la categoría 8).
 3. **PageSpeed Insights** de la home y de la página de conversión.
+4. **Datos de analítica** — páginas con más tráfico, % móvil vs. escritorio, conversiones/mes y ticket promedio (habilitan la priorización por tráfico real y el escenario económico).
+5. **Objeciones y voz del cliente** — las 2–3 objeciones más frecuentes y algún mensaje real de WhatsApp o chat (habilitan el copy con lenguaje real).
 
 Sin nada de eso el skill igual funciona: audita lo observable, marca el resto como no evaluado y lo declara en el score.
 
@@ -144,7 +146,7 @@ Sin nada de eso el skill igual funciona: audita lo observable, marca el resto co
 |---|---|
 | [SKILL.md](SKILL.md) | Instrucciones principales: encuadre, rutas de evidencia, ejes de análisis, normalización y reglas de calidad. |
 | [rubrica-scoring.md](rubrica-scoring.md) | Las 8 categorías con subcriterios, anclas de calibración 0–4, distribución de referencia e interpretación del score. |
-| [plantilla-informe.md](plantilla-informe.md) | Estructura obligatoria del informe (ficha técnica, veredicto, fugas, benchmark, plan de acción, hipótesis) y generación del Word. |
+| [plantilla-informe.md](plantilla-informe.md) | Estructura obligatoria del informe (ficha técnica, veredicto, fugas, escenario económico, benchmark, plan de acción, hipótesis, seguimiento y re-auditoría) y generación del Word. |
 | [formulas-copy.md](formulas-copy.md) | Fórmulas de titulares, banco de CTAs por tipo de negocio, formato de testimonios, bloques de reducción de riesgo y ofertas intermedias. |
 | [contexto-colombia.md](contexto-colombia.md) | Módulo Colombia / LatAm. |
 | [vertical-ecommerce.md](vertical-ecommerce.md) | Módulo vertical de tiendas online. |
