@@ -16,7 +16,7 @@ Usa esta estructura exacta. Doce secciones numeradas; **diez son obligatorias** 
 9. [Plan de acción priorizado](#9-plan-de-acción-priorizado)
 10. [Hipótesis de conversión](#10-hipótesis-de-conversión)
 11. [Seguimiento y re-auditoría](#11-seguimiento-y-re-auditoría)
-12. [Bloque complementario — accesibilidad y SEO comercial](#12-bloque-complementario--accesibilidad-y-seo-comercial) · solo si el módulo fue activado
+12. [Bloque complementario — accesibilidad, SEO comercial y legibilidad para agentes de IA](#12-bloque-complementario--accesibilidad-seo-comercial-y-legibilidad-para-agentes-de-ia) · solo si el módulo fue activado
 
 [Generación del documento Word](#generación-del-documento-word) — sección de proceso, no es un bloque del informe.
 
@@ -285,7 +285,7 @@ Si el bloque 10 quedó pendiente por falta de analítica, este bloque hereda esa
 
 ---
 
-## 12. Bloque complementario — accesibilidad y SEO comercial
+## 12. Bloque complementario — accesibilidad, SEO comercial y legibilidad para agentes de IA
 
 Solo si el módulo fue activado. Va al final del informe, con su score en línea propia, nunca sumado al de conversión.
 
@@ -293,11 +293,14 @@ Solo si el módulo fue activado. Va al final del informe, con su score en línea
 |---|---:|---:|
 | Accesibilidad | | 12 |
 | SEO comercial | | 8 |
-| **Bloque** | | **20** |
+| Legibilidad para agentes de IA (AEO) | | 5 |
+| **Bloque** | | **25** |
 
-Debajo, los hallazgos separados por parte, con la misma estructura de evidencia y recomendación del bloque 4. Los hallazgos que además afectan la conversión —área táctil, etiquetas de formulario, metadatos sociales, títulos y meta descripciones— van en el cuerpo principal de la auditoría, no aquí: un hallazgo se reporta una sola vez.
+Debajo, los hallazgos separados por parte, con la misma estructura de evidencia y recomendación del bloque 4. Los hallazgos que además afectan la conversión —área táctil, etiquetas de formulario, metadatos sociales, títulos y meta descripciones, y el contenido que no llega sin JavaScript— van en el cuerpo principal de la auditoría, no aquí: un hallazgo se reporta una sola vez.
 
-Cierra con la nota de alcance del módulo: sin análisis automatizado ni prueba con lector de pantalla, es una revisión de indicios y no un dictamen de conformidad WCAG.
+En la parte C, declara con qué se verificó cada dato: `robots.txt` traído directamente, `curl` sobre la home, o la herramienta `agentic-seo` con su versión y fecha. **Su score global no se reporta** (ver el módulo). Si algún subcriterio de la parte C quedó NA por no aplicar al modelo de negocio —los extras de producto técnico—, dilo en la tabla en vez de dejarlo en blanco.
+
+Cierra con la nota de alcance del módulo: sin análisis automatizado ni prueba con lector de pantalla, es una revisión de indicios y no un dictamen de conformidad WCAG; y la parte C mide si el sitio es legible para un agente, no si termina siendo citado.
 
 ---
 
@@ -322,7 +325,7 @@ Cuando el informe sea para un cliente, genera el `.docx` con el skill `docx`.
 11. Plan de acción (bloque 9).
 12. Hipótesis (bloque 10).
 13. Seguimiento y re-auditoría (bloque 11).
-14. Bloque complementario de accesibilidad y SEO comercial (bloque 12), si fue activado.
+14. Bloque complementario de accesibilidad, SEO comercial y legibilidad para agentes de IA (bloque 12), si fue activado.
 15. Nota de alcance: qué se evaluó, qué no y por qué.
 
 **Criterios de formato:**
