@@ -18,6 +18,7 @@ La mayoría de "auditorías" hechas con IA son alucinaciones con formato bonito.
 - **Anti-inflación de notas.** La rúbrica incluye anclas de calibración por subcriterio y una distribución de referencia: el sitio típico de PyME es un 40–59, no un 70. Hay controles explícitos contra el promedio cómodo.
 - **Copy escrito, no descrito.** "Mejorar el titular" no es un entregable; la versión reescrita sí.
 - **Prioridad por impacto ÷ esfuerzo.** El cliente sabe qué mover el lunes por la mañana.
+- **Legibilidad para agentes de IA.** Verifica si ChatGPT, Claude o Perplexity pueden siquiera entrar y leer el sitio: `robots.txt` que bloquea bots de IA sin que nadie lo haya decidido, contenido que solo existe si se ejecuta JavaScript, datos del negocio atrapados en imágenes. Adaptado de [`agentic-seo`](https://github.com/addyosmani/agentic-seo) y recortado a lo que aplica a un sitio comercial.
 
 ---
 
@@ -35,7 +36,7 @@ flowchart LR
 | Paso | Qué hace |
 |---|---|
 | **0 — Encuadre** | Pide URL, cliente ideal, acción principal, mercado, competidores, origen del tráfico y evidencia (capturas, `view-source`, PageSpeed, datos de analítica, objeciones reales de clientes) en un solo mensaje. No se detiene si faltan respuestas: infiere, marca suposiciones y sigue. |
-| **1 — Evidencia** | Home + hasta 8 páginas priorizadas (conversión primero). Audita plantillas, no instancias. Detecta analítica, píxeles, CRM, pasarelas y metadatos; verifica seguridad de transporte (HTTPS), enlaces rotos y página 404; cruza consistencia entre plantillas; revisa cómo se ve el enlace al compartirlo (Open Graph); benchmark de 5 ejes contra competidores. |
+| **1 — Evidencia** | Home + hasta 8 páginas priorizadas (conversión primero). Audita plantillas, no instancias. Detecta analítica, píxeles, CRM, pasarelas y metadatos; verifica seguridad de transporte (HTTPS), enlaces rotos y página 404; cruza consistencia entre plantillas; revisa cómo se ve el enlace al compartirlo (Open Graph); comprueba si el contenido llega sin JavaScript y si `robots.txt` deja entrar a los bots de IA; benchmark de 5 ejes contra competidores. |
 | **2 — Análisis** | Nueve ejes: intención comercial, prueba de los 5 segundos, mensaje, estructura, credibilidad, CTAs, embudo, automatización y medición, experiencia móvil. |
 | **3 — Puntuación** | Rúbrica de 100 puntos con anclas. Score = obtenidos ÷ evaluables × 100, siempre acompañado del % de cobertura. |
 | **4 — Hallazgos** | Cada fuga con prioridad (Crítico / Alto / Medio / Bajo), impacto, esfuerzo, ubicación, evidencia y recomendación concreta. |
@@ -76,7 +77,7 @@ flowchart LR
 | **Servicios con reserva/agenda** | `vertical-reservas.md` | Negocios cuya acción principal es reservar o agendar (clínicas, restaurantes, asesorías, tours). Disponibilidad visible, flujo de reserva (sin confirmar), precio y política antes de reservar, recordatorio contra el no-show. |
 | **B2B de ticket alto** | `vertical-b2b-ticket-alto.md` | Venta consultiva de ciclo largo y decisión multi-rol (SaaS, consultoría, industrial). Corrige el sesgo B2C: el formulario largo como calificación, contenido para el comité y la página reenviable. |
 | **Contexto Colombia / LatAm** | `contexto-colombia.md` | Mercados donde WhatsApp es *el* canal de venta. Medios de pago locales (PSE, Nequi, contraentrega…), señales de confianza locales y tratamiento de datos personales (habeas data). |
-| **Accesibilidad y SEO comercial** | `accesibilidad-y-seo.md` | A pedido, sectores regulados o venta a EE. UU. / UE. Se puntúa sobre 20 aparte — nunca se mezcla con el score de conversión. Cubre solo la capa observable de SEO que toca la venta. |
+| **Accesibilidad, SEO comercial y AEO** | `accesibilidad-y-seo.md` | A pedido, sectores regulados, venta a EE. UU. / UE, o cuando el negocio no aparece en las respuestas de ChatGPT, Claude y Perplexity. Se puntúa sobre 25 aparte —accesibilidad 12, SEO comercial 8, legibilidad para agentes de IA 5— y nunca se mezcla con el score de conversión. |
 
 ---
 
@@ -152,7 +153,7 @@ Sin nada de eso el skill igual funciona: audita lo observable, marca el resto co
 | [vertical-ecommerce.md](vertical-ecommerce.md) | Módulo vertical de tiendas online. |
 | [vertical-reservas.md](vertical-reservas.md) | Módulo vertical de servicios con reserva o agenda. |
 | [vertical-b2b-ticket-alto.md](vertical-b2b-ticket-alto.md) | Módulo vertical de venta consultiva B2B de ticket alto. |
-| [accesibilidad-y-seo.md](accesibilidad-y-seo.md) | Módulo complementario de accesibilidad (12 pts) y SEO comercial (8 pts), puntuado aparte. |
+| [accesibilidad-y-seo.md](accesibilidad-y-seo.md) | Módulo complementario de accesibilidad (12 pts), SEO comercial (8 pts) y legibilidad para agentes de IA (5 pts), puntuado aparte. |
 | `web-audit.skill` | Paquete ZIP instalable con la estructura final (`web-audit/SKILL.md` + `web-audit/references/`). |
 
 ---
@@ -164,7 +165,8 @@ Este skill define el **problema comercial** del sitio. No intenta cubrirlo todo:
 | Si la pregunta es sobre… | Corresponde a |
 |---|---|
 | Por qué no convierte, copy, CTAs, embudo, confianza | **este skill** |
-| Rankings, keywords, indexación, schema, Core Web Vitals, AI Overviews | un skill de `seo` |
+| Si un agente de IA puede entrar y leer el sitio (`robots.txt`, render sin JS, datos citables) | **este skill** — módulo complementario, parte C |
+| Rankings, keywords, indexación, schema, Core Web Vitals, estrategia de citación en AI Overviews | un skill de `seo` |
 | Contenido para redes sociales | un skill de contenido orgánico |
 | Venta por chat y manejo de objeciones | un skill de ventas |
 
@@ -175,3 +177,5 @@ Para una auditoría "completa", el flujo recomendado es: primero esta auditoría
 ## Créditos
 
 Creado por **John Stevans Alvarez**. Escrito en español y calibrado para PyMEs y profesionales independientes, con módulos específicos para el mercado colombiano y latinoamericano.
+
+La parte C del módulo complementario —legibilidad para agentes de IA— adapta el marco *Agentic Engine Optimization* de [`agentic-seo`](https://github.com/addyosmani/agentic-seo), de Addy Osmani (MIT). La adaptación conserva sus señales y umbrales, descarta los chequeos propios de sitios de documentación técnica y **no usa su score**: en modo `--url` la mitad de sus chequeos no puede ejecutarse y puntúa 0 en lugar de marcarse como no evaluada, lo que hunde el resultado de cualquier sitio comercial sano.

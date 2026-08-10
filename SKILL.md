@@ -1,6 +1,6 @@
 ---
 name: web-audit
-description: Auditoría comercial de un sitio web — mensaje, estructura, credibilidad, CTAs, embudo, medición y móvil — con módulo opcional de accesibilidad y SEO comercial. Entrega score 0-100 normalizado por cobertura, fugas de conversión priorizadas con evidencia, copy reescrito y plan 24h / 7 días / 30 días en informe Word. Activa este skill SIEMPRE que el usuario pida auditar, revisar, evaluar o diagnosticar un sitio web, landing page o tienda online; cuando pregunte por qué su web recibe visitas pero no genera contactos, cotizaciones, reservas ni ventas; cuando quiera subir su tasa de conversión, su copy, sus CTAs o su embudo; cuando compare un rediseño con el sitio actual; cuando prepare un diagnóstico para cotizar un proyecto; o cuando mencione CRO, auditoría web, fuga de conversión, accesibilidad, WCAG, "mi página no vende", "no me llegan clientes por la web" u optimizar la landing. Para rankings, keywords, indexación, schema, Core Web Vitals o AI Overviews usa el skill `seo`.
+description: Auditoría comercial de un sitio web — mensaje, estructura, confianza, CTAs, embudo y medición — con módulo opcional de accesibilidad, SEO comercial y legibilidad para agentes de IA (AEO). Entrega score 0-100 normalizado por cobertura, fugas priorizadas con evidencia, copy reescrito y plan 24h/7d/30d en informe Word. Activa este skill SIEMPRE que el usuario pida auditar, revisar, evaluar o diagnosticar un sitio web, landing o tienda online; cuando pregunte por qué recibe visitas pero no contactos, cotizaciones, reservas ni ventas; cuando quiera subir su conversión, copy, CTAs o embudo; cuando compare un rediseño o prepare un diagnóstico para cotizar; cuando mencione AEO, agentic SEO, `llms.txt`, bots de IA bloqueados o "mi web no aparece cuando le preguntan a ChatGPT"; o cuando mencione CRO, auditoría web, fuga de conversión, accesibilidad, WCAG, "mi página no vende" o "no me llegan clientes por la web". Para rankings, keywords, indexación, schema o Core Web Vitals usa el skill `seo`.
 ---
 
 # Auditoría Web de Conversión y Atracción de Clientes
@@ -16,7 +16,8 @@ Un sitio bonito que no vende obtiene un score bajo. Un sitio feo que convierte o
 | Si el usuario pregunta por… | Usa |
 |---|---|
 | Por qué no convierte, copy, CTAs, embudo, confianza | **este skill** |
-| Rankings, keywords, indexación, schema, GEO, AI Overviews | `seo` |
+| Si un agente de IA puede entrar y leer el sitio (`robots.txt`, render sin JS, datos citables) | **este skill** — módulo complementario, parte C |
+| Rankings, keywords, indexación, schema, estrategia GEO, ser citado en AI Overviews | `seo` |
 | Escribir contenido para redes, reels, carruseles | `contenido-organico` |
 | Vender por chat, manejar objeciones en vivo | `ventas-irresistibles` |
 
@@ -103,6 +104,8 @@ Si pegó el `view-source`, o si respondió qué tiene instalado, trabaja con eso
 
 **Antes de declarar Ruta C, intenta salir de ella.** Si tienes Bash, `curl -sL <url>` te entrega el código fuente completo — con eso estás en **Ruta B** (código obtenido por ti; repórtalo como observado). La Ruta C aplica solo cuando tu única herramienta devuelve contenido sin markup.
 
+**Caso distinto: el HTML llega pero viene vacío.** Si `curl` devuelve markup completo y aun así no hay contenido —solo `<div id="root">`, o menú y pie sin nada en medio—, eso **no es una limitación de tu herramienta: es un hallazgo del sitio.** El contenido se renderiza con JavaScript, y todo lo que hace una sola petición HTTP sin ejecutarlo ve exactamente lo mismo que tú: los asistentes de IA (ChatGPT, Claude, Perplexity), la tarjeta de compartido de WhatsApp y cualquier lector simple. Regístralo con la URL, el tamaño del HTML devuelto y qué contenía, y llévalo a dos sitios: al Paso 1e (compartido) y al criterio C2 del módulo complementario si está activo. Sigue auditando el contenido con navegador o con lo que el usuario aporte, pero no lo trates como ruido de herramienta.
+
 **Importante: si la extracción devuelve texto y no HTML, no vas a ver ni un `<script>`.** Esto no es un fallo tuyo ni del sitio: es un límite de la herramienta, y hay que tratarlo como tal.
 
 **Prueba de alcance del extractor.** Antes de puntuar nada que dependa del `<head>` o del markup, corre dos sondas sobre la home para saber qué te entrega tu herramienta:
@@ -132,6 +135,8 @@ Su observabilidad depende de la ruta. Los de **contenido visible** (WhatsApp, ag
 | Enlaces legales | política de privacidad, tratamiento de datos, términos, PQRS |
 | Canales de contacto | correo, teléfono, dirección física, redes |
 | Idioma y localización | `hreflang`, selector de idioma, coherencia de traducción entre versiones |
+| **Acceso de agentes de IA** | **trae `/robots.txt` directamente —es un archivo de texto, se lee en las tres rutas— y busca reglas contra `GPTBot`, `ChatGPT-User`, `ClaudeBot`, `PerplexityBot`, `Google-Extended`, `GoogleOther`, `Amazonbot`, `Bytespider`, `cohere-ai`, o un `Disallow: /` global. Alimenta el criterio C1 del módulo complementario. Un bloqueo heredado de la plantilla o del plugin de SEO deja al negocio fuera de las respuestas de IA sin que nadie lo haya decidido.** |
+| Índice para agentes | `/llms.txt` o `/llms-full.txt` — señal opcional, nunca requisito (criterio C3) |
 | **Metadatos de página** | **`title`, `meta description`, `canonical`, `viewport`, generador de CMS** |
 | **Metadatos sociales** | **`og:title`, `og:description`, `og:image`, `twitter:card`, `twitter:image`** |
 | **Metadatos de plataforma** | **revelan capacidades sin ver un solo script. Shopify expone `shopify-checkout-api-token`, `shopify-digital-wallet` (billeteras digitales activas, o sea checkout acelerado) y `shopify-y`. Busca también `facebook-domain-verification` y `google-site-verification`: confirman que la tienda está conectada a esas plataformas aunque el píxel no se vea.** |
@@ -364,11 +369,13 @@ Si el sitio pertenece a un vertical con módulo propio, ábrelo antes de puntuar
 
 Si el sitio no encaja en ningún vertical con módulo, la rúbrica base funciona sola: está escrita para captación de clientes en general. No fuerces un módulo que no corresponde — genera hallazgos irrelevantes y penaliza ausencias que no importan al modelo de negocio.
 
-## Módulo complementario — accesibilidad y SEO comercial
+## Módulo complementario — accesibilidad, SEO comercial y legibilidad para agentes de IA
 
-Si el usuario lo pide, si el sitio vende a Estados Unidos o Europa, si el sector es regulado o público, o si durante la auditoría aparecen señales evidentes —imágenes sin texto alternativo, encabezados desordenados, metadatos rotos o notas de desarrollo publicadas— abre `references/accesibilidad-y-seo.md`.
+Si el usuario lo pide, si el sitio vende a Estados Unidos o Europa, si el sector es regulado o público, si pregunta por qué su negocio no aparece cuando le consultan a ChatGPT o Perplexity, o si durante la auditoría aparecen señales evidentes —imágenes sin texto alternativo, encabezados desordenados, metadatos rotos, notas de desarrollo publicadas o una home que devuelve HTML sin contenido— abre `references/accesibilidad-y-seo.md`.
 
-Se puntúa sobre 20 aparte y **no entra en los 100 puntos de conversión**. Cubre solo la capa observable de SEO que toca la venta; el posicionamiento lo hace el skill `seo`. Si el usuario quiere ambas cosas, dilo en vez de entregar la capa delgada como si fuera la auditoría completa.
+Se puntúa sobre 25 aparte —accesibilidad 12, SEO comercial 8, legibilidad para agentes 5— y **no entra en los 100 puntos de conversión**. Cubre solo la capa observable de SEO que toca la venta y la verificación mecánica de si un agente de IA puede entrar y leer el sitio; el posicionamiento y la estrategia de citación los hace el skill `seo`. Si el usuario quiere ambas cosas, dilo en vez de entregar la capa delgada como si fuera la auditoría completa.
+
+La parte C adapta el marco **Agentic Engine Optimization** de `agentic-seo` (<https://github.com/addyosmani/agentic-seo>). Si tienes Bash y Node ≥ 18 puedes correr la herramienta como sonda —`npx --yes agentic-seo --url <url> --checks robots-txt,llms-txt --json`—, pero **su score global no se reporta nunca**: en modo URL la mitad de sus chequeos no puede ejecutarse y puntúa 0, no NE. El módulo explica el detalle.
 
 ## Contexto local
 
@@ -404,7 +411,7 @@ Cuando además hubo subcriterios NA, sepáralos de la cobertura para no presenta
 
 **Si la cobertura baja del 70 %, no publiques un score.** Entrega un diagnóstico parcial, nombra las fugas que sí pudiste verificar y di exactamente qué necesitas para cerrar el número. Un score sobre evidencia insuficiente es peor que ningún score.
 
-Si activaste el módulo complementario, su score va en su propia línea y nunca sumado al de conversión: *"Conversión 76/100 · Bloque complementario 11/20"*.
+Si activaste el módulo complementario, su score va en su propia línea y nunca sumado al de conversión: *"Conversión 76/100 · Bloque complementario 14/25"*.
 
 ---
 
@@ -494,4 +501,4 @@ Cuando el usuario pida algo breve, un diagnóstico previo o una primera mirada, 
 | `references/vertical-ecommerce.md` | Cuando el sitio sea una tienda con carrito y checkout. Recorrido de checkout, comprobación cruzada de políticas, y ajustes a la rúbrica base. |
 | `references/vertical-reservas.md` | Cuando la acción principal sea reservar o agendar. Recorrido del flujo de reserva, disponibilidad, recordatorio y ajustes a la rúbrica. |
 | `references/vertical-b2b-ticket-alto.md` | Cuando la venta sea consultiva de ticket alto y ciclo largo. Formulario como filtro, contenido para el comité, página reenviable y ajustes a la rúbrica. |
-| `references/accesibilidad-y-seo.md` | Cuando actives el módulo complementario. Rúbrica de 20 puntos aparte, con la delimitación frente al skill `seo` y el marco normativo. |
+| `references/accesibilidad-y-seo.md` | Cuando actives el módulo complementario. Rúbrica de 25 puntos aparte —accesibilidad, SEO comercial y legibilidad para agentes de IA (AEO)—, con la delimitación frente al skill `seo`, el protocolo de la herramienta `agentic-seo` y el marco normativo. |
