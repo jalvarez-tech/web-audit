@@ -18,7 +18,7 @@ La mayoría de "auditorías" hechas con IA son alucinaciones con formato bonito.
 - **Anti-inflación de notas.** La rúbrica incluye anclas de calibración por subcriterio y una distribución de referencia: el sitio típico de PyME es un 40–59, no un 70. Hay controles explícitos contra el promedio cómodo.
 - **Copy escrito, no descrito.** "Mejorar el titular" no es un entregable; la versión reescrita sí.
 - **Prioridad por impacto ÷ esfuerzo.** El cliente sabe qué mover el lunes por la mañana.
-- **Legibilidad para agentes de IA.** Verifica si ChatGPT, Claude o Perplexity pueden siquiera entrar y leer el sitio: `robots.txt` que bloquea bots de IA sin que nadie lo haya decidido, contenido que solo existe si se ejecuta JavaScript, datos del negocio atrapados en imágenes. Adaptado de [`agentic-seo`](https://github.com/addyosmani/agentic-seo) y recortado a lo que aplica a un sitio comercial.
+- **Legibilidad para agentes de IA.** Verifica si ChatGPT, Claude o Perplexity pueden siquiera entrar y leer el sitio: `robots.txt` que bloquea bots de IA sin que nadie lo haya decidido, contenido que solo existe si se ejecuta JavaScript, datos del negocio atrapados en imágenes. La comprobación corre siempre en el Paso 1; la puntuación vive en el módulo complementario opcional (parte C, 5 de sus 25 puntos, nunca sumados al score de conversión). Adaptado de [`agentic-seo`](https://github.com/addyosmani/agentic-seo) y recortado a lo que aplica a un sitio comercial.
 
 ---
 
@@ -110,6 +110,10 @@ cp accesibilidad-y-seo.md contexto-colombia.md formulas-copy.md \
    ~/.claude/skills/web-audit/references/
 ```
 
+### Dependencia opcional
+
+La parte C del módulo complementario puede apoyarse en [`agentic-seo`](https://github.com/addyosmani/agentic-seo) como sonda (`npx agentic-seo`), lo que requiere Bash y Node ≥ 18. Es opcional y no hace falta instalar nada: los tres criterios están escritos para verificarse a mano con `curl` sobre `/robots.txt` y sobre la home. Cuando la herramienta sí está disponible, su score global **no se reporta nunca** — el módulo explica por qué.
+
 ---
 
 ## Uso
@@ -171,6 +175,12 @@ Este skill define el **problema comercial** del sitio. No intenta cubrirlo todo:
 | Venta por chat y manejo de objeciones | un skill de ventas |
 
 Para una auditoría "completa", el flujo recomendado es: primero esta auditoría (problema comercial) y luego la de SEO (problema de tráfico) — como dos informes, no mezclados.
+
+---
+
+## Licencia
+
+MIT — ver [LICENSE](LICENSE). El archivo incluye además la atribución al proyecto de terceros que se adapta en la parte C.
 
 ---
 
