@@ -6,7 +6,7 @@
 2. [Delimitación con el skill `seo`](#delimitación-con-el-skill-seo)
 3. [Parte A — Accesibilidad (12 puntos)](#parte-a--accesibilidad-12-puntos)
 4. [Parte B — SEO comercial (8 puntos)](#parte-b--seo-comercial-8-puntos)
-5. [Parte C — Legibilidad para agentes de IA (5 puntos)](#parte-c--legibilidad-para-agentes-de-ia-aeo--5-puntos)
+5. [Parte C — Legibilidad para agentes de IA (AEO) — 5 puntos](#parte-c--legibilidad-para-agentes-de-ia-aeo--5-puntos)
 6. [Herramienta: `agentic-seo`](#herramienta-agentic-seo)
 7. [Interpretación y reporte](#interpretación-y-reporte)
 8. [Marco normativo](#marco-normativo)
